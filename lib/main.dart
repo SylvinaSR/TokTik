@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(lazy: false, create: (context) => DiscoverProvider()..loadNextPage(),)], //.. = cascades
+      providers: [ 
+        ChangeNotifierProvider(lazy: false, create: (_) => DiscoverProvider()..loadNextPage(),)
+      ], //.. = cascades
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
