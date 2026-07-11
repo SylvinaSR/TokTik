@@ -46,16 +46,29 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
             ),
           );
         }
-        return AspectRatio(
-          aspectRatio: controller.value.aspectRatio, 
-          child: Stack(
-            children: [
-              //VideoPlayer
-              VideoPlayer(controller),
-              //Gradient
-              //Caption
-              Positioned(bottom: 50, left: 20, child: _VideoCaption(caption: widget.caption))
-            ]
+        return GestureDetector(
+          onTap: () {
+            if (controller.value.isPlaying) {
+              controller.pause();
+              return;
+            }
+            controller.play();
+          },
+          child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: Stack(
+              children: [
+                //VideoPlayer
+                VideoPlayer(controller),
+                //Gradient
+                //Caption
+                Positioned(
+                  bottom: 50,
+                  left: 20,
+                  child: _VideoCaption(caption: widget.caption),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -64,20 +77,18 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 }
 
 class _VideoCaption extends StatelessWidget {
-
   final String caption;
 
   const _VideoCaption({required this.caption});
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     final titleStyle = Theme.of(context).textTheme.titleLarge;
 
     return SizedBox(
       width: size.width * 0.6,
-      child: Text(caption, maxLines: 2, style: titleStyle,),
+      child: Text(caption, maxLines: 2, style: titleStyle),
     );
   }
 }
