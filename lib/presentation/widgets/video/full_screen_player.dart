@@ -43,7 +43,6 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
           return const Center(
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              color: Colors.pink,
             ),
           );
         }
